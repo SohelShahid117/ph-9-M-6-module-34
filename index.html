@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module-34:Hunting Phone API</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <!-- <p>Hello world</p> -->
+  <!-- 34-1 Load Data Using Phone Hunter API -->
+  <!-- 34-2 Display Phones Dynamically On Each Card -->
+  <!-- 34-3 Implement Search Functionality And Display Search Result -->
+  <!-- 34-4 Recap Search And Show Conditional Show All Button -->
+
+  <!-- URL Format: https://openapi.programming-hero.com/api/phones?search=${searchText}
+    Example: https://openapi.programming-hero.com/api/phones?search=iphone
+
+    URL Format: https://openapi.programming-hero.com/api/phone/${id}
+    Example: https://openapi.programming-hero.com/api/phone/apple_iphone_13_pro_max-11089 -->
+
+  <header>
+    <h2 class="text-6xl">Hunting Phone</h2>
+  </header>
+  <main>
+    <!-- <button onclick="loadPhone()" class="btn btn-success">Load Phone</button> -->
+
+    <section class="bg-gray-200 p-4 m-5">
+      <input id="search-field" type="text" placeholder="search..." class="input input-bordered w-full max-w-xs" />
+      <button onclick="handleSearch()" class="btn btn-success">Search</button>
+
+      <!-- another search field -->
+      <input id="search-field2" type="text" placeholder="search..." class="input input-bordered w-full max-w-xs" />
+      <button onclick="handleSearch2()" class="btn btn-primary">Search</button>
+    </section>
+
+    <section class="container mx-auto mt-10">
+      <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- show all btn  -->
+        <div id="show-all-btn-container" class="hidden">
+          <button class="btn btn-secondary">Show All</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- https://daisyui.com/components/card/ -->
+
+    <!-- <div class="card w-96 bg-gray-100 shadow-xl">
+          <figure class="px-10 pt-10">
+            <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" class="rounded-xl" />
+          </figure>
+
+          <div class="card-body items-center text-center">
+            <h2 class="card-title">Shoes!</h2>
+            <p>If a dog chews shoes whose shoes does he choose?</p>
+
+            <div class="card-actions">
+              <button class="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+
+        </div> -->
+
+
+
+
+
+  </main>
+  <footer></footer>
+
+  <script src="./phone.js"></script>
+</body>
+
+</html>
