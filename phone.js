@@ -33,19 +33,16 @@ const displayPhones = (phones) => {
   phoneContainer.textContent = ' ';
 
   console.log(phones.length);
+  // diplay only first 8 phone & show all btn
+  const showAllBtnContainer = document.getElementById('show-all-btn-container');
+  console.log(showAllBtnContainer);
+  if(phones.length>8){
+    showAllBtnContainer.classList.remove('hidden');
+  }else{
+    showAllBtnContainer.classList.add('hidden');
+  }
   phones = phones.slice(0, 8);
   console.log(phones)
-  // const showAllBtnContainer = document.getElementById('show-all-btn-container');
-  // console.log(showAllBtnContainer);
-  // if (phones.length > 5) {
-  //   showAllBtnContainer.classList.remove("hidden");
-  // }
-
-
-  // // diplay only first 10 phone
-  // phones = phones.slice(0, 5);
-  // console.log(phones)
-
 
   phones.forEach((phnnn) => {
     console.log(phnnn);
