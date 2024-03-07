@@ -4,6 +4,7 @@
 // 34-2 Display Phones Dynamically On Each Card
 // 34-3 Implement Search Functionality And Display Search Result
 // 34-4 Recap Search And Show Conditional Show All Button
+// 34-5 Show And Hide Loading Spinner While Loading API Data
 
 const loadPhone = async (searchTexttt) => {
   // const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone');
@@ -63,10 +64,12 @@ const displayPhones = (phones) => {
             </div>
         `
     phoneContainer.appendChild(phnCard);
-  })
+  });
+  loadingSpinnerToggle(false);
 }
 
 const handleSearch = () => {
+  loadingSpinnerToggle(true);
   // console.log("handle search");
   const searchField = document.getElementById('search-field');
   const searchText = searchField.value;
@@ -76,6 +79,7 @@ const handleSearch = () => {
 }
 
 const handleSearch2 = () => {
+  loadingSpinnerToggle(true);
   // console.log("handle search");
   const searchField2 = document.getElementById('search-field2');
   // console.log(searchField2);
@@ -83,4 +87,14 @@ const handleSearch2 = () => {
   console.log(searchText2);
   loadPhone(searchText2);
   // loadPhone();
+}
+
+const loadingSpinnerToggle = (ldngSpnr) =>{
+  const loadingSpinner = document.getElementById('loading-spinner');
+  if(ldngSpnr){
+    loadingSpinner.classList.remove('hidden');
+  }else{
+    loadingSpinner.classList.add('hidden');
+  }
+  console.log(loadingSpinner);
 }
