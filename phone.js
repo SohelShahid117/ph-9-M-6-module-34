@@ -6,6 +6,9 @@
 // 34-4 Recap Search And Show Conditional Show All Button
 // 34-5 Show And Hide Loading Spinner While Loading API Data
 // 34-6 (Optional) Implement Show All Button To Display All Data
+// 34-7 Dynamic API Data Load For Phone Show Details Button
+// 34-8 Display Show Details With Nested Object Data
+// 34-9 Module Summary And Practice With AI Universe HUB
 
 const loadPhone = async (searchTexttt,isShowAll) => {
   // const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone');
@@ -35,6 +38,9 @@ const displayPhones = (phones,isShowAll) => {
   phoneContainer.textContent = ' ';
 
   console.log(phones.length);
+  if(phones.length===0){
+    alert('please write the serach item properly')
+  }
   // diplay only first 8 phone & show all btn
   const showAllBtnContainer = document.getElementById('show-all-btn-container');
   console.log(showAllBtnContainer);
@@ -140,8 +146,8 @@ const showPhoneDetails = (phnData) =>{
   <p><span>Slug:</span>${phnData?.slug}</p>
   <p><span>Brand:</span>${phnData?.brand}</p>
   <p><span>Name:</span>${phnData?.name}</p>
-  <p><span>GPS:</span>${phnData?.others?.GPS}</p>
-  <p><span>USB:</span>${phnData?.others?.USB}</p>
+  <p><span>GPS:</span>${phnData?.others?.GPS || 'no GPS available'}</p>
+  <p><span>USB:</span>${phnData?.others?.USB || 'no USB available'}</p>
   <p><span>WLAN:</span>${phnData?.others?.WLAN}</p>
   <p class="py-4">Press ESC key or click the button below to close</p>
   <div class="modal-action text-center">
