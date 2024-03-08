@@ -5,15 +5,16 @@
 // 34-3 Implement Search Functionality And Display Search Result
 // 34-4 Recap Search And Show Conditional Show All Button
 // 34-5 Show And Hide Loading Spinner While Loading API Data
+// 34-6 (Optional) Implement Show All Button To Display All Data
 
-const loadPhone = async (searchTexttt) => {
+const loadPhone = async (searchTexttt,isShowAll) => {
   // const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone');
   const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchTexttt}`);
   const data = await res.json();
   console.log(data);
   // console.log(data.data);
   const phones = data.data
-  displayPhones(phones);
+  displayPhones(phones,isShowAll);
 
   // console.log(phones);
   // for(phn of phones){
@@ -24,7 +25,7 @@ const loadPhone = async (searchTexttt) => {
 }
 
 
-const displayPhones = (phones) => {
+const displayPhones = (phones,isShowAll) => {
   // console.log(phones);
   // console.log(phones.length);
 
@@ -37,14 +38,18 @@ const displayPhones = (phones) => {
   // diplay only first 8 phone & show all btn
   const showAllBtnContainer = document.getElementById('show-all-btn-container');
   console.log(showAllBtnContainer);
-  if(phones.length>8){
+
+  if(phones.length>8 && !isShowAll){
     showAllBtnContainer.classList.remove('hidden');
   }else{
     showAllBtnContainer.classList.add('hidden');
   }
-  phones = phones.slice(0, 8);
-  console.log(phones)
-
+  console.log('is show all ?',isShowAll)
+  if(!isShowAll){
+    phones = phones.slice(0, 8);
+    console.log(phones)
+  }
+  
   phones.forEach((phnnn) => {
     console.log(phnnn);
     const phnCard = document.createElement('div');
@@ -68,13 +73,13 @@ const displayPhones = (phones) => {
   loadingSpinnerToggle(false);
 }
 
-const handleSearch = () => {
+const handleSearch = (isShowAll) => {
   loadingSpinnerToggle(true);
   // console.log("handle search");
   const searchField = document.getElementById('search-field');
   const searchText = searchField.value;
   console.log(searchText);
-  loadPhone(searchText);
+  loadPhone(searchText,isShowAll);
   // loadPhone();
 }
 
@@ -89,6 +94,7 @@ const handleSearch2 = () => {
   // loadPhone();
 }
 
+//loading spinner
 const loadingSpinnerToggle = (ldngSpnr) =>{
   const loadingSpinner = document.getElementById('loading-spinner');
   if(ldngSpnr){
@@ -97,4 +103,12 @@ const loadingSpinnerToggle = (ldngSpnr) =>{
     loadingSpinner.classList.add('hidden');
   }
   console.log(loadingSpinner);
+}
+
+//handle show all
+const handleShowAll = () => {
+  // alert('angta lagche');
+  handleSearch(true);
+  //handleSearch2(true);
+
 }
