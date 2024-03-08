@@ -64,7 +64,7 @@ const displayPhones = (phones,isShowAll) => {
                 <p>If a dog chews shoes whose shoes does he choose?</p>
 
                 <div class="card-actions">
-                  <button class="btn btn-primary">Buy Now</button>
+                  <button onclick='handleShowDetails("${phnnn.slug}")' class="btn  btn-primary">Show Details</button>
                 </div>
             </div>
         `
@@ -110,5 +110,52 @@ const handleShowAll = () => {
   // alert('angta lagche');
   handleSearch(true);
   //handleSearch2(true);
+}
 
+const handleShowDetails =async (id) =>{
+  // alert('hi');
+  console.log(id);
+  //load single phone data
+  // https://openapi.programming-hero.com/api/phone/${id}
+
+  const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+  const data = await res.json();
+  console.log(data);
+  const phn = data.data;
+  showPhoneDetails(phn);
+}
+
+const showPhoneDetails = (phnData) =>{
+  const phoneName = document.getElementById('phone-name');
+  phoneName.innerText = `${phnData.name}`
+
+  const showPhoneDetailContainer = document.getElementById('show-phone-detail-container');
+  console.log(showPhoneDetailContainer);
+
+  showPhoneDetailContainer.innerHTML = `
+  <img src='${phnData.image}'>
+  <p><span>Memory:</span>${phnData?.mainFeatures?.memory}</p>
+  <p><span>Display Size:</span>${phnData?.mainFeatures?.displaySize}</p>
+  <p><span>Storage:</span>${phnData?.mainFeatures?.storage}</p>
+  <p><span>Slug:</span>${phnData?.slug}</p>
+  <p><span>Brand:</span>${phnData?.brand}</p>
+  <p><span>Name:</span>${phnData?.name}</p>
+  <p><span>GPS:</span>${phnData?.others?.GPS}</p>
+  <p><span>USB:</span>${phnData?.others?.USB}</p>
+  <p><span>WLAN:</span>${phnData?.others?.WLAN}</p>
+  <p class="py-4">Press ESC key or click the button below to close</p>
+  <div class="modal-action text-center">
+    <form method="dialog">
+      <!-- if there is a button in form, it will close the modal -->
+      <div class='text-center'>
+        <button class="btn">Close</button>
+      </div>
+    </form>
+  </div>
+  
+  `
+  show_details_modal.showModal()
+  // alert('hlo')
+  // alert(phnData);
+  console.log(phnData);
 }
